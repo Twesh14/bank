@@ -1,5 +1,6 @@
 import mysql.connector as ms
 import random
+import time
 
 db = ms.connect(host='localhost', user='root', passwd='yourpass', database='yourdatabase')
 myc = db.cursor()
@@ -8,7 +9,6 @@ myc = db.cursor()
 def choice():
     print("1. Create account")
     print("2. Login")
-    print("3. View Leader Board")
     inputChoice = int(input("Enter your choice: "))
     if (inputChoice == 1):
         SignUp()
@@ -64,7 +64,7 @@ def Login():
 def DashBoard(user):
     print("\n" * 20)
     print("\nHi,", user)
-    print("\t1. Send\n\t2. Request from others\n\t3. Accept Request\n\t4. Log Out")
+    print("\t1. Send\n\t2. Request from others\n\t3. Accept Request\n\t4. Mini Statement of Credits")
     myc.execute("select Balance,upi from account where Name='{Name}'".format(Name=user))
     inData=myc.fetchall()
     print("\tBalance:",inData[0][0],"\n\tUPI: ",inData[0][1]+"\n")
